@@ -60,7 +60,7 @@ sys.path.append(parent_path)
 @app.route("/netflix/homepage/users/<user_id>", methods=['GET'])
 def get_netflix_homepage(user_id):
     try:
-        api_gateway_response = requests.get("{}/homepage/users/{}".format(helper.get_service_url('api-gateway'), user_id), timeout=helper.get_timeout('api-gateway'))
+        api_gateway_response = requests.get("{}/homepage/users/{}".format("http://10.107.103.68:5001", user_id), timeout=helper.get_timeout('api-gateway'))
         status_code = api_gateway_response.status_code
 
     except requests.exceptions.ConnectionError:

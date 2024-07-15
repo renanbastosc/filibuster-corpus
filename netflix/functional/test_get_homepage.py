@@ -1,3 +1,5 @@
+#!/opt/homebrew/opt/python3/libexec/bin/python
+
 import os
 import sys
 import requests

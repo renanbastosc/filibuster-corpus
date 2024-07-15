@@ -66,8 +66,8 @@ class Helper:
 
     def jaeger_agent_host_name(self):
         if self.resolve_with_docker_host('jaeger'):
-            return "jaeger"
-        return "localhost"
+            return "host.docker.internal"
+        return "host.docker.internal"
 
     def jaeger_agent_port(self):
         return 6831

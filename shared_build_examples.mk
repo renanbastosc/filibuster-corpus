@@ -25,7 +25,7 @@ $(foreach service,$(services),$(eval $(call unit-target,$(service))))
 ## Jaeger
 
 jaeger-start: jaeger-stop
-	docker run --name jaeger -d -p 6831:6831/udp -p $(jaeger_port):$(jaeger_port) jaegertracing/all-in-one:1.6
+	docker run --name jaeger --platform linux/amd64 -d -p 6831:6831/udp -p $(jaeger_port):$(jaeger_port) jaegertracing/all-in-one:1.6
 
 jaeger-stop:
 	((docker stop jaeger && docker rm jaeger) || exit 0)
@@ -66,14 +66,14 @@ refresh-aws-credentials:
         echo "Not refreshing credentials, running inside AWS."; \
     fi
 
-docker-build: refresh-aws-credentials generate-protos
+docker-build: generate-protos
 	docker build --build-arg example=$(example) --build-arg disable_instrumentation=$(DISABLE_INSTRUMENTATION) --build-arg disable_server_communication=$(DISABLE_SERVER_COMMUNICATION) --build-arg run_counterexample=$(RUN_COUNTEREXAMPLE) -t $(example):configuration -f ../Dockerfile ..
 	AWS_ACCOUNT_ID=$(AWS_ACCOUNT_ID) REGION=$(REGION) docker-compose build
 	docker pull jaegertracing/all-in-one:1.6
 
 docker-start:
 	DISABLE_INSTRUMENTATION=$(DISABLE_INSTRUMENTATION) make docker-build
-	AWS_ACCOUNT_ID=$(AWS_ACCOUNT_ID) REGION=$(REGION) docker-compose up -d
+	AWS_ACCOUNT_ID=$(AWS_ACCOUNT_ID) REGION=$(REGION) docker-compose up
 
 docker-stop:
 	AWS_ACCOUNT_ID=$(AWS_ACCOUNT_ID) REGION=$(REGION) docker-compose stop
@@ -128,7 +128,7 @@ local-stop:: ; coverage html --omit="/usr/local/lib*,*site-packages*" --include=
 ## Kubernetes
 
 pre-minikube-start:
-	make docker-push
+	# make docker-push
 	minikube start
 	kubectl create secret generic regcred --from-file=.dockerconfigjson=$(HOME)/.docker/config.json --type=kubernetes.io/dockerconfigjson
 

@@ -5,8 +5,8 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-    - name: "5000"
-      port: 5000
-      targetPort: 5000
+    - name: "5012"
+      port: 5012
+      targetPort: 5012
   selector:
     io.kompose.service: mobile-client

@@ -7,7 +7,7 @@ services:
             context: './services/mobile-client'
             dockerfile: './Dockerfile'
         ports:
-            - "5000:5000"
+            - "5012:5012"
     api-gateway:
         image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/netflix:api-gateway
         build: 
@@ -35,7 +35,7 @@ services:
             context: './services/trending'
             dockerfile: './Dockerfile'
         ports:
-            - "5005:5005"
+            - "5015:5015"
     my-list:
         image: ${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/netflix:my-list
         build: 

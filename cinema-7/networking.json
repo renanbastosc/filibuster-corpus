@@ -1,37 +1,37 @@
 {
   "movies": {
     "port": 5001,
-    "docker-host": "movies",
+    "docker-host": "host.docker.internal",
     "default-host": "0.0.0.0",
     "timeout-seconds": 10
   },
   "showtimes": {
     "port": 5002,
-    "docker-host": "showtimes",
+    "docker-host": "host.docker.internal",
     "default-host": "0.0.0.0",
     "timeout-seconds": 10
   },
   "bookings-primary": {
     "port": 5003,
-    "docker-host": "bookings-primary",
+    "docker-host": "host.docker.internal",
     "default-host": "0.0.0.0",
     "timeout-seconds": 10
   },
   "bookings-secondary": {
     "port": 5004,
-    "docker-host": "bookings-secondary",
+    "docker-host": "host.docker.internal",
     "default-host": "0.0.0.0",
     "timeout-seconds": 10
   },
   "users": {
     "port": 5000,
-    "docker-host": "users",
+    "docker-host": "host.docker.internal",
     "default-host": "0.0.0.0",
     "timeout-seconds": 10
   },
   "filibuster": {
     "port": 5005,
-    "docker-host": "filibuster",
+    "docker-host": "host.docker.internal",
     "default-host": "0.0.0.0",
     "timeout-seconds": 10
   }

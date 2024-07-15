@@ -23,7 +23,7 @@ COPY ./${example}/services application/examples/${example}/services
 COPY ./${example}/base_requirements.txt ./base_requirements.txt
 
 RUN cd /tmp && \
-    git clone https://github.com/filibuster-testing/filibuster.git && \
+    git clone https://github.com/renanbastosc/filibuster.git && \
     cd filibuster && \
     make install
 
@@ -33,3 +33,4 @@ ENV RUNNING_IN_DOCKER=1
 ENV DISABLE_INSTRUMENTATION=${disable_instrumentation}
 ENV DISABLE_SERVER_COMMUNICATION=${disable_server_communication}
 ENV RUN_COUNTEREXAMPLE=${run_counterexample}
+ENV NETFLIX_FAULTS=true
